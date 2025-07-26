@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kushagra's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        html, body { overflow-x: hidden; }
+        main::-webkit-scrollbar { width: 8px; }
+        main::-webkit-scrollbar-track { background: #1c1c1c; }
+        main::-webkit-scrollbar-thumb { background-color: #0891b2; border-radius: 4px; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-section {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+            animation-play-state: paused;
+        }
+        .animate-on-load {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+
+        @keyframes gradient-pan {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animated-gradient-text {
+            background: linear-gradient(90deg, #e5e5e5, #0891b2, #e5e5e5);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-pan 4s linear infinite;
+        }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Rajdhani", "sans-serif"],
+              heading: ["Orbitron", "sans-serif"],
+            },
+            colors: {
+              accent: "#0891b2",
+              bgDark: "#111111",
+              bgSlightlyLighter: "#1c1c1c",
+              textLight: "#e5e5e5",
+              textDark: "#a3a3a3",
+              borderDark: "#2d2d2d",
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+</head>
+<body class="bg-bgDark text-textLight font-sans">
+
+    <div class="lg:hidden flex justify-between items-center p-4 bg-bgSlightlyLighter/80 backdrop-blur-sm sticky top-0 z-50">
+        <h1 class="text-xl font-heading font-bold text-accent">Kushagra Singh</h1>
+        <button id="menu-btn" class="text-2xl z-50">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden lg:hidden fixed inset-0 bg-bgDark z-40 flex flex-col items-center justify-center space-y-6">
+        <a href="#about" class="mobile-nav-link text-2xl hover:text-accent">About</a>
+        <a href="#education" class="mobile-nav-link text-2xl hover:text-accent">Education</a>
+        <a href="#skills" class="mobile-nav-link text-2xl hover:text-accent">Skills</a>
+        <a href="#focus" class="mobile-nav-link text-2xl hover:text-accent">Focus</a>
+        <a href="#projects" class="mobile-nav-link text-2xl hover:text-accent">Projects</a>
+        <a href="#contact" class="mobile-nav-link text-2xl hover:text-accent">Contact</a>
+    </div>
+
+
+    <div class="max-w-screen-xl mx-auto lg:grid lg:grid-cols-12 lg:gap-8">
+        <header class="hidden lg:flex lg:col-span-3 py-16 px-4 sticky top-0 h-screen flex-col">
+            <div class="flex-grow">
+                <div class="space-y-4">
+                    <div class="animate-on-load">
+                        <img src="https://i.postimg.cc/pL6Jcqd4/472439284-567536699499108-8615927398114558635-n.jpg" alt="Kushagra Singh" class="rounded-full w-32 h-32 border-2 border-borderDark object-cover">
+                    </div>
+                    <div class="animate-on-load delay-100">
+                        <h1 class="text-4xl font-heading font-bold text-textLight animated-gradient-text">KUSHAGRA SINGH</h1>
+                        <h2 class="mt-3 text-lg font-medium text-textLight">Data Science & Cloud Enthusiast</h2>
+                    </div>
+                    <nav class="pt-8 animate-on-load delay-200">
+                        <ul class="space-y-4">
+                            <li><a href="#about" class="group flex items-center py-2"><span class="nav-indicator mr-4 h-px w-8 bg-borderDark group-hover:w-16 group-hover:bg-accent transition-all duration-300"></span><span class="nav-text text-sm font-bold uppercase text-textDark group-hover:text-accent transition-colors duration-300">About</span></a></li>
+                            <li><a href="#education" class="group flex items-center py-2"><span class="nav-indicator mr-4 h-px w-8 bg-borderDark group-hover:w-16 group-hover:bg-accent transition-all duration-300"></span><span class="nav-text text-sm font-bold uppercase text-textDark group-hover:text-accent transition-colors duration-300">Education</span></a></li>
+                            <li><a href="#skills" class="group flex items-center py-2"><span class="nav-indicator mr-4 h-px w-8 bg-borderDark group-hover:w-16 group-hover:bg-accent transition-all duration-300"></span><span class="nav-text text-sm font-bold uppercase text-textDark group-hover:text-accent transition-colors duration-300">Skills</span></a></li>
+                            <li><a href="#focus" class="group flex items-center py-2"><span class="nav-indicator mr-4 h-px w-8 bg-borderDark group-hover:w-16 group-hover:bg-accent transition-all duration-300"></span><span class="nav-text text-sm font-bold uppercase text-textDark group-hover:text-accent transition-colors duration-300">Focus</span></a></li>
+                            <li><a href="#certifications" class="group flex items-center py-2"><span class="nav-indicator mr-4 h-px w-8 bg-borderDark group-hover:w-16 group-hover:bg-accent transition-all duration-300"></span><span class="nav-text text-sm font-bold uppercase text-textDark group-hover:text-accent transition-colors duration-300">Certifications</span></a></li>
+                            <li><a href="#contact" class="group flex items-center py-2"><span class="nav-indicator mr-4 h-px w-8 bg-borderDark group-hover:w-16 group-hover:bg-accent transition-all duration-300"></span><span class="nav-text text-sm font-bold uppercase text-textDark group-hover:text-accent transition-colors duration-300">Contact</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div>
+                 <div class="animate-on-load delay-300 mb-6">
+                    <a href="https://drive.google.com/uc?export=download&id=1DopXSKNgl67X18Jz5Ndab2pAPyyULyAk" download="Kushagra_Singh_Resume.pdf" class="inline-block bg-accent text-bgDark font-bold py-3 px-5 rounded-lg hover:bg-cyan-600 transition duration-300 w-full text-center">
+                        Download Resume <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-6 text-2xl text-textDark animate-on-load delay-400">
+                   <a href="https://github.com/I1gorr" class="hover:text-accent transition-colors" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                   <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-linkedin"></i></a>
+                   <a href="https://www.instagram.com/kkushagra___/" class="hover:text-accent transition-colors" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                   <a href="mailto:kushagrasingh477@gmail.com" class="hover:text-accent transition-colors"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <main id="main-content" class="lg:col-span-6 lg:h-screen lg:overflow-y-auto px-6 py-16">
+             <div class="lg:hidden mb-16 text-center">
+                 <img src="https://i.postimg.cc/pL6Jcqd4/472439284-567536699499108-8615927398114558635-n.jpg" alt="Kushagra Singh" class="rounded-full w-32 h-32 mx-auto mb-6 border-2 border-borderDark object-cover">
+                 <h1 class="text-4xl font-heading font-bold text-textLight animated-gradient-text">KUSHAGRA SINGH</h1>
+                 <h2 class="mt-3 text-lg font-medium text-textLight">Data Science & Cloud Enthusiast</h2>
+            </div>
+
+            <div id="content">
+                <section id="about" class="mb-24 animate-on-load delay-400">
+                    <h2 class="text-xl font-heading font-bold text-accent mb-6 uppercase lg:hidden">About</h2>
+                    <p class="text-textDark leading-relaxed text-lg">
+                    I'm a third-year Computer Science student deeply interested in Cloud Operations, Data Science, and building solutions for real-world challenges. I enjoy working on systems that bridge data and infrastructure—whether it's optimizing resource usage, monitoring performance, or creating scalable backend architectures. I'm passionate about making technology practical and impactful, with a focus on reliability, automation, and data-driven decision-making.
+                    </p>
+                </section>
+                
+                <section id="education" class="mb-24 animated-section">
+                    <h2 class="text-xl font-heading font-bold text-accent mb-6 uppercase lg:hidden">Education</h2>
+                    <div class="p-6 bg-bgSlightlyLighter rounded-lg border border-transparent hover:border-accent/30 transition-all duration-300 transform hover:-translate-y-1 mb-6">
+                        <div class="flex items-start gap-4">
+                            <img src="https://i.postimg.cc/dVxhcfrR/Vellore-Institute-of-Technology-seal-2017-svg.png" alt="University Logo" class="w-16 h-16 object-contain rounded-md border border-borderDark mt-1 p-1">
+                            <div>
+                                 <p class="text-xs font-semibold uppercase text-textDark tracking-widest">2023 — 2027</p>
+                                 <h3 class="font-bold leading-snug text-textLight text-lg">Bachelor of Technology, Computer Science</h3>
+                                 <p class="text-textDark">Vellore Institute of Technology</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="p-6 bg-bgSlightlyLighter rounded-lg border border-transparent hover:border-accent/30 transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex items-start gap-4">
+                            <img src="https://i.postimg.cc/Bn1m0TDy/cms-logo-png-seeklogo-399583.png" alt="School Logo" class="w-16 h-16 object-contain rounded-md border border-borderDark mt-1 p-1">
+                            <div>
+                                 <p class="text-xs font-semibold uppercase text-textDark tracking-widest">PASSOUT — 2023</p>
+                                 <h3 class="font-bold leading-snug text-textLight text-lg">High School Diploma</h3>
+                                 <p class="text-textDark">City Montessori School</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="skills" class="mb-24 animated-section">
+                    <h2 class="text-xl font-heading font-bold text-accent mb-6 uppercase lg:hidden">Skills</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="font-bold text-textLight mb-4">Languages</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">Python</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">C/C++</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">Java</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">SQL</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">JavaScript</span>
+                            </div>
+                        </div>
+                         <div>
+                            <h3 class="font-bold text-textLight mb-4">Frameworks & Libraries</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">React.js</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">LangChain</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">Scikit-learn</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">Keras</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">PyTorch</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">pandas</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">NumPy</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">LightGBM</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">XGBoost</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">Prophet</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-textLight mb-4">Tools, Platforms & Databases</h3>
+                             <div class="flex flex-wrap gap-3">
+                                <span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">Docker</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">Git</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">GitHub</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">Linux</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">Ollama</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">PostgreSQL</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">MongoDB</span><span class="bg-accent/10 text-accent font-semibold py-1.5 px-3 rounded-full transform hover:-translate-y-1 transition-transform duration-200">Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="focus" class="mb-24 animated-section">
+                    <h2 class="text-xl font-heading font-bold text-accent mb-6 uppercase lg:hidden">Current Focus</h2>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-bgSlightlyLighter p-6 rounded-lg border border-borderDark h-full transform hover:-translate-y-1 transition-transform duration-300">
+                            <h3 class="text-lg font-bold text-textLight mb-4">Currently Learning</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3"><i class="fa-brands fa-docker text-accent"></i><span class="text-textDark">Kubernetes</span></li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-rocket text-accent"></i><span class="text-textDark">MLOps & Production Deployment</span></li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-gears text-accent"></i><span class="text-textDark">Systems Programming in Rust</span></li>
+                            </ul>
+                        </div>
+                        <div class="bg-bgSlightlyLighter p-6 rounded-lg border border-borderDark h-full transform hover:-translate-y-1 transition-transform duration-300">
+                             <h3 class="text-lg font-bold text-textLight mb-4">Currently Working On</h3>
+                             <p class="text-textDark text-sm">Developing a blockchain middleware to facilitate on-chain decision-making by transferring decision trees and logic across the chain.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                 <section id="certifications" class="mb-24 animated-section">
+                    <h2 class="text-xl font-heading font-bold text-accent mb-6 uppercase lg:hidden">Certifications</h2>
+                    <div class="p-6 bg-bgSlightlyLighter rounded-lg border border-transparent hover:border-accent/30 transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex items-start gap-4">
+                             <img src="https://i.postimg.cc/xCbfGFb5/IBM-logo-svg.png" alt="IBM Logo" class="w-12 h-12 rounded-md border border-borderDark mt-1 bg-white p-1">
+                             <div>
+                                <h3 class="font-bold text-textLight">IBM Cybersecurity Analyst</h3>
+                                <p class="text-textDark">Issued by IBMCE · Expected 2025</p>
+                                <p class="text-xs text-textDark/70 mt-1">Credential ID: CECSAIIN</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact" class="mb-16 animated-section">
+                    <h2 class="text-xl font-heading font-bold text-accent mb-6 uppercase lg:hidden">Contact</h2>
+                    <p class="text-textDark text-lg mb-4">I'm always open to new opportunities and collaborations. Feel free to reach out using the links on the left.</p>
+                </section>
+
+                 <footer class="lg:hidden text-center text-textDark text-sm pt-16">
+                    © 2025 Kushagra Singh. All rights reserved.
+                </footer>
+            </div>
+        </main>
+
+        <aside id="projects" class="hidden lg:block lg:col-span-3 py-16 px-4 sticky top-0 h-screen overflow-y-auto">
+            <div class="animate-on-load delay-500">
+                <h2 class="text-xl font-heading font-bold text-accent mb-8 uppercase">Projects</h2>
+                <div class="relative border-l-2 border-borderDark">
+                    <div class="mb-12 ml-6 group">
+                        <span class="absolute flex items-center justify-center w-3 h-3 bg-borderDark rounded-full -left-1.5 ring-4 ring-bgDark group-hover:bg-accent transition-colors duration-300"></span>
+                        <h3 class="mb-1 text-lg font-bold text-textLight">System Bottleneck Predictor</h3>
+                        <p class="text-base font-normal text-textDark mb-3">Built a predictive pipeline to forecast CPU and memory usage using multivariate time-series models.</p>
+                         <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="text-xs font-semibold text-accent/80 bg-accent/10 py-0.5 px-2 rounded">Python</span><span class="text-xs font-semibold text-accent/80 bg-accent/10 py-0.5 px-2 rounded">LightGBM</span><span class="text-xs font-semibold text-accent/80 bg-accent/10 py-0.5 px-2 rounded">XGBoost</span><span class="text-xs font-semibold text-accent/80 bg-accent/10 py-0.5 px-2 rounded">pandas</span>
+                        </div>
+                        <a href="https://github.com/I1gorr/System-Bottleneck-Predictor" class="inline-flex items-center text-sm text-textDark hover:text-accent font-semibold" target="_blank" rel="noopener noreferrer">View Code <i class="fas fa-arrow-up-right-from-square ml-1.5"></i></a>
+                    </div>
+                    <div class="mb-12 ml-6 group">
+                        <span class="absolute flex items-center justify-center w-3 h-3 bg-borderDark rounded-full -left-1.5 ring-4 ring-bgDark group-hover:bg-accent transition-colors duration-300"></span>
+                        <h3 class="mb-1 text-lg font-bold text-textLight">EDDIE Learn Bot</h3>
+                        <p class="text-base font-normal text-textDark mb-3">Engineered a full-stack AI tutor that answers queries, summarizes notes, and generates tests.</p>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="text-xs font-semibold text-accent/80 bg-accent/10 py-0.5 px-2 rounded">React</span><span class="text-xs font-semibold text-accent/80 bg-accent/10 py-0.5 px-2 rounded">LangChain</span><span class="text-xs font-semibold text-accent/80 bg-accent/10 py-0.5 px-2 rounded">Docker</span>
+                        </div>
+                        <a href="https://github.com/I1gorr/Eddie-LearnBot" class="inline-flex items-center text-sm text-textDark hover:text-accent font-semibold" target="_blank" rel="noopener noreferrer">View Code <i class="fas fa-arrow-up-right-from-square ml-1.5"></i></a>
+                    </div>
+                     <div class="mb-12 ml-6 group">
+                        <span class="absolute flex items-center justify-center w-3 h-3 bg-borderDark rounded-full -left-1.5 ring-4 ring-bgDark group-hover:bg-accent transition-colors duration-300"></span>
+                        <h3 class="mb-1 text-lg font-bold text-textLight">Optimal Route Planner</h3>
+                        <p class="text-base font-normal text-textDark mb-3">A web app that takes multiple coordinates and calculates the most efficient travel route using the HERE Maps API.</p>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="text-xs font-semibold text-accent/80 bg-accent/10 py-0.5 px-2 rounded">HERE Maps API</span><span class="text-xs font-semibold text-accent/80 bg-accent/10 py-0.5 px-2 rounded">JavaScript</span><span class="text-xs font-semibold text-accent/80 bg-accent/10 py-0.5 px-2 rounded">HTML/CSS</span>
+                        </div>
+                        <a href="https://github.com/I1gorr/Road-Trip-planner" class="inline-flex items-center text-sm text-textDark hover:text-accent font-semibold" target="_blank" rel="noopener noreferrer">View Code <i class="fas fa-arrow-up-right-from-square ml-1.5"></i></a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+         <div id="mobile-projects" class="lg:hidden px-6 py-16 bg-bgSlightlyLighter">
+             <h2 class="text-xl font-heading font-bold text-accent mb-6 uppercase">Projects</h2>
+             <div class="mb-8">
+                 <h3 class="mb-1 text-lg font-bold text-textLight">System Bottleneck Predictor</h3>
+                 <p class="text-base font-normal text-textDark">Built a predictive pipeline to forecast CPU and memory usage using time-series models.</p>
+                 <a href="https://github.com/I1gorr/System-Bottleneck-Predictor" class="inline-flex items-center text-sm text-accent font-semibold mt-2" target="_blank" rel="noopener noreferrer">View Code <i class="fas fa-arrow-up-right-from-square ml-1.5"></i></a>
+             </div>
+             <div class="mb-8">
+                 <h3 class="mb-1 text-lg font-bold text-textLight">EDDIE Learn Bot</h3>
+                 <p class="text-base font-normal text-textDark">Engineered a full-stack AI tutor that answers queries, summarizes notes, and generates tests.</p>
+                 <a href="https://github.com/I1gorr/Eddie-LearnBot" class="inline-flex items-center text-sm text-accent font-semibold mt-2" target="_blank" rel="noopener noreferrer">View Code <i class="fas fa-arrow-up-right-from-square ml-1.5"></i></a>
+             </div>
+              <div class="mb-8">
+                 <h3 class="mb-1 text-lg font-bold text-textLight">Optimal Route Planner</h3>
+                 <p class="text-base font-normal text-textDark">A web app that takes multiple coordinates and calculates the most efficient travel route using the HERE Maps API.</p>
+                 <a href="https://github.com/I1gorr/Road-Trip-planner" class="inline-flex items-center text-sm text-accent font-semibold mt-2" target="_blank" rel="noopener noreferrer">View Code <i class="fas fa-arrow-up-right-from-square ml-1.5"></i></a>
+             </div>
+        </div>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        mobileNavLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+
+      const animatedSections = document.querySelectorAll('.animated-section');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const id = entry.target.id;
+            const navLink = document.querySelector(`nav a[href="#${id}"]`);
+
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+                
+                if(navLink) {
+                    document.querySelectorAll('nav .nav-indicator').forEach(i => { i.classList.remove('w-16', 'bg-accent'); i.classList.add('w-8', 'bg-borderDark'); });
+                    document.querySelectorAll('nav .nav-text').forEach(t => { t.classList.remove('text-accent'); t.classList.add('text-textDark'); });
+                    
+                    navLink.querySelector('.nav-indicator').classList.add('w-16', 'bg-accent');
+                    navLink.querySelector('.nav-text').classList.add('text-accent');
+                }
+            }
+        });
+      }, {
+        rootMargin: '-40% 0px -40% 0px'
+      });
+      animatedSections.forEach(section => { observer.observe(section); });
+    </script>
+</body>
+</html> 
