@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kushagra Singh | Portfolio</title>
-  <meta name="description" content="Software developer portfolio of Kushagra Singh.">
+  <title>Kushagra Singh | Backend Developer & Machine Learning Engineer</title>
+  <meta name="description" content="Computer Science undergraduate at VIT Vellore (CGPA 8.34) focused on backend engineering, distributed systems, machine learning, GPU computing, and secure software engineering.">
+  <meta property="og:title" content="Kushagra Singh | Backend Developer & Machine Learning Engineer">
+  <meta property="og:description" content="Computer Science undergraduate at VIT Vellore building scalable AI systems, GPU-accelerated applications, and modern backend software.">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet">
@@ -56,7 +59,14 @@
       text-overflow: ellipsis;
     }
     .nav-segment.brand { flex: 1.2; }
-    .nav-segment.links { flex: 2.5; gap: 12px; text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 12px; }
+    .nav-segment.links {
+      flex: 2.8;
+      gap: 12px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 600;
+      font-size: 12px;
+    }
     .nav-segment.links a { color: #b8b8b8; }
     .nav-segment.links a.active,
     .nav-segment.links a:hover { color: #fff; }
@@ -78,14 +88,41 @@
       letter-spacing: -0.06em;
       text-transform: uppercase;
     }
+    .hero .hero-role {
+      margin: 12px 0 0;
+      color: #d3d3d3;
+      font-size: clamp(0.78rem, 1.2vw, 0.92rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.55;
+    }
     .hero p {
       margin: 14px 0 0;
-      max-width: 66ch;
+      max-width: 72ch;
       color: #c8c8c8;
       line-height: 1.8;
       font-weight: 500;
       font-size: clamp(0.92rem, 1.7vw, 1.06rem);
     }
+    .hero-cta {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .hero-cta a {
+      border: 1px solid #333;
+      background: #151515;
+      padding: 8px 11px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e2e2e2;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .hero-cta a:hover { border-color: #555; transform: translateY(-1px); }
 
     .showcase {
       width: min(1400px, 100%);
@@ -101,7 +138,10 @@
       overflow: hidden;
       display: grid;
       place-items: center;
+      transition: border-color 0.25s ease;
     }
+    .case:hover,
+    .case:focus-within { border-color: #4b4b4b; }
     .case img {
       width: 100%;
       height: 100%;
@@ -109,10 +149,19 @@
       transform: scale(1.03);
       transition: transform 0.7s ease;
     }
-    .case:hover img { transform: scale(1.06); }
+    .case:hover img,
+    .case:focus-within img { transform: scale(1.06); }
+    .case-link {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      outline: none;
+    }
+    .case-link:focus-visible { box-shadow: inset 0 0 0 2px #d8d8d8; }
     .case .overlay {
       position: absolute;
       inset: auto 14px 14px 14px;
+      z-index: 10;
       background: rgba(0, 0, 0, 0.54);
       border: 1px solid rgba(255, 255, 255, 0.15);
       padding: 10px 12px;
@@ -134,7 +183,23 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      max-width: 72vw;
     }
+    .github-btn {
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(20, 20, 20, 0.82);
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #efefef;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+      z-index: 12;
+    }
+    .github-btn:hover,
+    .github-btn:focus-visible { border-color: #f0f0f0; transform: translateY(-1px); }
 
     .content {
       width: min(1200px, 92vw);
@@ -212,6 +277,106 @@
       letter-spacing: 0.04em;
       color: #dedede;
     }
+    .skill-groups {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .skill-group {
+      border: 1px solid #2e2e2e;
+      background: #171717;
+      padding: 12px;
+    }
+    .skill-group h3 {
+      margin: 0 0 10px;
+      color: #e8e8e8;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .project-card {
+      position: relative;
+      border: 1px solid #2f2f2f;
+      background: #161616;
+      padding: 13px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .project-card:hover,
+    .project-card:focus-within { border-color: #555; transform: translateY(-1px); }
+    .project-card h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .project-card .project-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .project-card .project-head a {
+      border: 1px solid #3a3a3a;
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ececec;
+    }
+    .project-card .project-head a:hover,
+    .project-card .project-head a:focus-visible { border-color: #ececec; }
+    .project-card .card-link {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .project-card .project-head,
+    .project-card .tags,
+    .project-card ul { position: relative; z-index: 2; }
+    .project-card .project-head a { position: relative; z-index: 3; }
+
+    footer {
+      width: min(1200px, 92vw);
+      margin: 0 auto 24px;
+      border: 1px solid var(--line);
+      background: var(--bg-soft);
+      padding: 14px 16px;
+      display: grid;
+      gap: 10px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-links a {
+      border: 1px solid #333;
+      background: #161616;
+      color: #e1e1e1;
+      padding: 6px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-weight: 800;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-links a:hover,
+    .footer-links a:focus-visible { border-color: #666; transform: translateY(-1px); }
+    .footer-meta {
+      color: #a7a7a7;
+      font-size: 12px;
+      line-height: 1.6;
+    }
 
     .float-stack {
       position: fixed;
@@ -246,9 +411,14 @@
       transform: translateY(0);
     }
 
+    @media (max-width: 1120px) {
+      .project-grid { grid-template-columns: 1fr; }
+    }
     @media (max-width: 980px) {
       .nav-segment.feature { display: none; }
       .split { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .skill-groups { grid-template-columns: 1fr; }
       .float-stack { display: none; }
       .hero { min-height: 74vh; }
     }
@@ -264,73 +434,154 @@
   </style>
 </head>
 <body>
-  <nav class="top-nav">
+  <nav class="top-nav" aria-label="Primary">
     <div class="nav-segment brand">Kushagra</div>
     <div class="nav-segment brand">Singh</div>
     <div class="nav-segment links">
       <a href="#about">About</a>
+      <a href="#education">Education</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+      <a href="#achievements">Achievements</a>
     </div>
     <div class="nav-segment feature" id="nav-feature">Fog GPU — edge anomaly detection with GPU acceleration</div>
   </nav>
 
   <header class="hero reveal">
     <h1>Kushagra<br>Singh</h1>
-    <p>Software developer building high-performance backend systems, machine learning products, and secure software. Open to software developer roles.</p>
+    <p class="hero-role">Computer Science Undergraduate | Backend Developer | Machine Learning Engineer | GPU Computing Enthusiast</p>
+    <p>Computer Science undergraduate with strong foundations in Data Structures and Algorithms, distributed systems, machine learning, backend development, GPU computing, and secure software engineering. Experienced in building scalable AI systems, GPU-accelerated applications, and modern backend software.</p>
+    <div class="hero-cta">
+      <a href="https://github.com/I1gorr" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile">GitHub</a>
+      <a href="kushagra_resume_2026.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open resume PDF">Resume</a>
+    </div>
   </header>
 
   <main id="projects" class="showcase">
     <section class="case reveal project-case" data-key="fogGpu">
-      <img alt="Fog GPU visual" data-image-key="fogGpu">
+      <img alt="Fog GPU anomaly detection framework preview" data-image-key="fogGpu" loading="lazy">
+      <a class="case-link" href="https://github.com/I1gorr?tab=repositories&q=fog" target="_blank" rel="noopener noreferrer" aria-label="Open Fog GPU repository in a new tab"></a>
       <div class="overlay">
-        <div class="title">Fog GPU · 2026</div>
-        <div class="desc">Low-latency anomaly detection pipeline for fog and edge environments</div>
+        <div>
+          <div class="title">Fog GPU — GPU Accelerated Anomaly Detection Framework</div>
+          <div class="desc">88% accuracy · 0.89 F1 score · 1.59M samples/sec GPU inference</div>
+        </div>
+        <a class="github-btn" href="https://github.com/I1gorr?tab=repositories&q=fog" target="_blank" rel="noopener noreferrer" aria-label="Open Fog GPU GitHub repository">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.23c0 4.51 2.87 8.34 6.84 9.69.5.1.66-.22.66-.49v-1.73c-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.88 1.56 2.3 1.11 2.86.84.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05A9.35 9.35 0 0 1 12 6.89c.85 0 1.7.12 2.49.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.95-2.33 4.82-4.56 5.07.36.32.67.95.67 1.92v2.84c0 .27.17.59.67.49A10.27 10.27 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg>
+        </a>
       </div>
     </section>
 
     <section class="case reveal project-case" data-key="eddie">
-      <img alt="EDDIE Learn Bot visual" data-image-key="eddie">
+      <img alt="EDDIE Learn Bot PDF learning platform preview" data-image-key="eddie" loading="lazy">
+      <a class="case-link" href="https://github.com/I1gorr/Eddie-LearnBot" target="_blank" rel="noopener noreferrer" aria-label="Open EDDIE Learn Bot repository in a new tab"></a>
       <div class="overlay">
-        <div class="title">EDDIE Learn Bot · 2025</div>
-        <div class="desc">RAG-powered PDF learning and contextual conversation platform</div>
+        <div>
+          <div class="title">EDDIE Learn Bot</div>
+          <div class="desc">AI-powered PDF learning platform with RAG and semantic search</div>
+        </div>
+        <a class="github-btn" href="https://github.com/I1gorr/Eddie-LearnBot" target="_blank" rel="noopener noreferrer" aria-label="Open EDDIE Learn Bot GitHub repository">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.23c0 4.51 2.87 8.34 6.84 9.69.5.1.66-.22.66-.49v-1.73c-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.88 1.56 2.3 1.11 2.86.84.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05A9.35 9.35 0 0 1 12 6.89c.85 0 1.7.12 2.49.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.95-2.33 4.82-4.56 5.07.36.32.67.95.67 1.92v2.84c0 .27.17.59.67.49A10.27 10.27 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg>
+        </a>
       </div>
     </section>
 
     <section class="case reveal project-case" data-key="mseKey">
-      <img alt="MSE Key visual" data-image-key="mseKey">
+      <img alt="MSE Key cryptographic key generation preview" data-image-key="mseKey" loading="lazy">
+      <a class="case-link" href="https://github.com/I1gorr/MSE-Crypto" target="_blank" rel="noopener noreferrer" aria-label="Open MSE Key repository in a new tab"></a>
       <div class="overlay">
-        <div class="title">MSE Key · 2025</div>
-        <div class="desc">Entropy-based cryptographic key generation from image data</div>
+        <div>
+          <div class="title">MSE Key</div>
+          <div class="desc">Entropy-based cryptographic key generation using image-derived randomness</div>
+        </div>
+        <a class="github-btn" href="https://github.com/I1gorr/MSE-Crypto" target="_blank" rel="noopener noreferrer" aria-label="Open MSE Key GitHub repository">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.23c0 4.51 2.87 8.34 6.84 9.69.5.1.66-.22.66-.49v-1.73c-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.88 1.56 2.3 1.11 2.86.84.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05A9.35 9.35 0 0 1 12 6.89c.85 0 1.7.12 2.49.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.95-2.33 4.82-4.56 5.07.36.32.67.95.67 1.92v2.84c0 .27.17.59.67.49A10.27 10.27 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg>
+        </a>
       </div>
     </section>
   </main>
 
   <section class="content">
     <article id="about" class="panel reveal">
-      <h2>Professional Summary</h2>
-      <p>Computer Science undergraduate with strong foundations in Data Structures and Algorithms, distributed systems, machine learning, and backend development. Experienced in building scalable software, GPU-accelerated applications, AI-powered systems, and secure computing solutions using modern software engineering practices.</p>
+      <h2>About</h2>
+      <p>I am a Computer Science student at Vellore Institute of Technology with a CGPA of 8.34/10. My core interests are Backend Engineering, Distributed Systems, Machine Learning, GPU Computing, and Secure Computing. I am passionate about building scalable, production-minded software systems rather than only interface-level applications.</p>
     </article>
 
     <div class="split">
-      <article class="panel reveal">
+      <article id="education" class="panel reveal">
         <h2>Education</h2>
-        <p><strong>B.Tech in Computer Science and Engineering</strong><br>Vellore Institute of Technology, Vellore, India<br>2023–2027 · CGPA: 8.34 / 10</p>
+        <p><strong>Vellore Institute of Technology</strong><br>Bachelor of Technology, Computer Science and Engineering<br>CGPA: 8.34 / 10<br>2023–2027</p>
       </article>
-      <article id="contact" class="panel reveal">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:kushagrasingh1424@gmail.com">kushagrasingh1424@gmail.com</a><br>GitHub: <a href="https://github.com/I1gorr" target="_blank" rel="noopener noreferrer">github.com/I1gorr</a><br>LeetCode: <a href="https://leetcode.com/kushagra1424" target="_blank" rel="noopener noreferrer">leetcode.com/kushagra1424</a></p>
+      <article class="panel reveal">
+        <h2>Professional Summary</h2>
+        <p>Computer Science undergraduate with strong foundations in Data Structures and Algorithms, distributed systems, machine learning, backend development, GPU computing, and secure software engineering. Experienced in building scalable AI systems, GPU-accelerated applications, and modern backend software.</p>
       </article>
     </div>
 
     <article id="skills" class="panel reveal">
       <h2>Skills</h2>
-      <div class="tags">
-        <span class="tag">C/C++</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">Rust</span><span class="tag">SQL</span><span class="tag">JavaScript</span>
-        <span class="tag">DSA</span><span class="tag">OS</span><span class="tag">DBMS</span><span class="tag">CN</span>
-        <span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">PyTorch</span><span class="tag">LangChain</span><span class="tag">CUDA</span>
-        <span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">REST APIs</span><span class="tag">Microservices</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">AES</span><span class="tag">RSA</span><span class="tag">KDFs</span><span class="tag">Wireshark</span><span class="tag">Nmap</span>
+      <div class="skill-groups">
+        <div class="skill-group"><h3>Programming Languages</h3><div class="tags"><span class="tag">C++</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">Rust</span><span class="tag">SQL</span><span class="tag">JavaScript</span></div></div>
+        <div class="skill-group"><h3>Core CS</h3><div class="tags"><span class="tag">Data Structures & Algorithms</span><span class="tag">OOP</span><span class="tag">Operating Systems</span><span class="tag">DBMS</span><span class="tag">Computer Networks</span></div></div>
+        <div class="skill-group"><h3>Machine Learning</h3><div class="tags"><span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">PyTorch</span><span class="tag">LangChain</span></div></div>
+        <div class="skill-group"><h3>GPU Computing</h3><div class="tags"><span class="tag">CUDA</span><span class="tag">Parallel Computing</span><span class="tag">GPU Accelerated Inference</span></div></div>
+        <div class="skill-group"><h3>Backend</h3><div class="tags"><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">Git</span><span class="tag">REST APIs</span><span class="tag">Microservices</span><span class="tag">Fog Computing</span></div></div>
+        <div class="skill-group"><h3>Databases</h3><div class="tags"><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span></div></div>
+        <div class="skill-group"><h3>Security</h3><div class="tags"><span class="tag">AES</span><span class="tag">RSA</span><span class="tag">Cryptographic Hashing</span><span class="tag">KDFs</span><span class="tag">Wireshark</span><span class="tag">Nmap</span></div></div>
+      </div>
+    </article>
+
+    <article class="panel reveal">
+      <h2>Project Details</h2>
+      <div class="project-grid">
+        <article class="project-card">
+          <a class="card-link" href="https://github.com/I1gorr?tab=repositories&q=fog" target="_blank" rel="noopener noreferrer" aria-label="Open Fog GPU repository"></a>
+          <div class="project-head">
+            <h3>Fog GPU</h3>
+            <a href="https://github.com/I1gorr?tab=repositories&q=fog" target="_blank" rel="noopener noreferrer" aria-label="Open Fog GPU GitHub repository">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.23c0 4.51 2.87 8.34 6.84 9.69.5.1.66-.22.66-.49v-1.73c-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.88 1.56 2.3 1.11 2.86.84.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05A9.35 9.35 0 0 1 12 6.89c.85 0 1.7.12 2.49.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.95-2.33 4.82-4.56 5.07.36.32.67.95.67 1.92v2.84c0 .27.17.59.67.49A10.27 10.27 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg>
+            </a>
+          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">CUDA</span><span class="tag">XGBoost</span></div>
+          <ul>
+            <li>Built a GPU-accelerated anomaly detection framework for fog computing environments capable of low-latency traffic filtering.</li>
+            <li>Implemented ensemble models using Isolation Forest and XGBoost achieving 88% accuracy and 0.89 F1 score.</li>
+            <li>Optimized GPU inference to process over 1.59 million samples per second.</li>
+            <li>Benchmarked CPU vs GPU latency, throughput, and scalability.</li>
+          </ul>
+        </article>
+        <article class="project-card">
+          <a class="card-link" href="https://github.com/I1gorr/Eddie-LearnBot" target="_blank" rel="noopener noreferrer" aria-label="Open EDDIE Learn Bot repository"></a>
+          <div class="project-head">
+            <h3>EDDIE Learn Bot</h3>
+            <a href="https://github.com/I1gorr/Eddie-LearnBot" target="_blank" rel="noopener noreferrer" aria-label="Open EDDIE Learn Bot GitHub repository">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.23c0 4.51 2.87 8.34 6.84 9.69.5.1.66-.22.66-.49v-1.73c-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.88 1.56 2.3 1.11 2.86.84.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05A9.35 9.35 0 0 1 12 6.89c.85 0 1.7.12 2.49.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.95-2.33 4.82-4.56 5.07.36.32.67.95.67 1.92v2.84c0 .27.17.59.67.49A10.27 10.27 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg>
+            </a>
+          </div>
+          <div class="tags"><span class="tag">React</span><span class="tag">LangChain</span><span class="tag">Ollama</span><span class="tag">Docker</span></div>
+          <ul>
+            <li>AI-powered PDF learning platform with upload and document chat workflow.</li>
+            <li>Implemented Retrieval Augmented Generation (RAG) and semantic search.</li>
+            <li>Supports AI-generated summaries, interactive PDF viewing, and contextual Q&A.</li>
+            <li>Built with a Dockerized backend for scalable deployment.</li>
+          </ul>
+        </article>
+        <article class="project-card">
+          <a class="card-link" href="https://github.com/I1gorr/MSE-Crypto" target="_blank" rel="noopener noreferrer" aria-label="Open MSE Key repository"></a>
+          <div class="project-head">
+            <h3>MSE Key</h3>
+            <a href="https://github.com/I1gorr/MSE-Crypto" target="_blank" rel="noopener noreferrer" aria-label="Open MSE Key GitHub repository">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.23c0 4.51 2.87 8.34 6.84 9.69.5.1.66-.22.66-.49v-1.73c-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.88 1.56 2.3 1.11 2.86.84.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05A9.35 9.35 0 0 1 12 6.89c.85 0 1.7.12 2.49.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.95-2.33 4.82-4.56 5.07.36.32.67.95.67 1.92v2.84c0 .27.17.59.67.49A10.27 10.27 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg>
+            </a>
+          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Cryptography</span></div>
+          <ul>
+            <li>Entropy-based cryptographic key generation system using physical image entropy.</li>
+            <li>Implemented high-entropy extraction with OpenCV image processing pipelines.</li>
+            <li>Used secure hashing and key derivation functions for key generation.</li>
+            <li>Evaluated output quality with cryptographic randomness metrics.</li>
+          </ul>
+        </article>
       </div>
     </article>
 
@@ -343,25 +594,36 @@
       </div>
     </article>
 
-    <div class="split">
-      <article class="panel reveal">
-        <h2>Certifications & Achievements</h2>
-        <ul>
-          <li>FOSS United Hackathon — Winner (2026)</li>
-          <li>IBM Cybersecurity Analyst Professional Certificate (2025)</li>
-          <li>LeetCode — Solved 200+ problems</li>
-        </ul>
-      </article>
-      <article class="panel reveal">
-        <h2>Current Profile Fit</h2>
-        <ul>
-          <li>Software developer profile with backend + systems focus</li>
-          <li>Hands-on experience with AI product workflows and RAG systems</li>
-          <li>Strong foundation for scalable and secure software engineering roles</li>
-        </ul>
-      </article>
-    </div>
+    <article id="achievements" class="panel reveal">
+      <h2>Achievements</h2>
+      <ul>
+        <li>🏆 Winner — FOSS United Hackathon 2026</li>
+        <li>IBM Cybersecurity Analyst Professional Certificate (2025)</li>
+        <li>LeetCode: 200+ Problems Solved</li>
+      </ul>
+    </article>
   </section>
+
+  <footer id="footer" class="reveal">
+    <div class="footer-links">
+      <a href="https://github.com/I1gorr" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.23c0 4.51 2.87 8.34 6.84 9.69.5.1.66-.22.66-.49v-1.73c-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.88 1.56 2.3 1.11 2.86.84.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05A9.35 9.35 0 0 1 12 6.89c.85 0 1.7.12 2.49.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.95-2.33 4.82-4.56 5.07.36.32.67.95.67 1.92v2.84c0 .27.17.59.67.49A10.27 10.27 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg>GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/kushagra-singh-5bbb8b376/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M6.94 8.5a1.88 1.88 0 1 1 0-3.75 1.88 1.88 0 0 1 0 3.75ZM5.25 9.9h3.38V20H5.25V9.9Zm5.34 0h3.24v1.38h.05c.45-.85 1.55-1.75 3.18-1.75 3.4 0 4.03 2.24 4.03 5.15V20H17.7v-4.73c0-1.13-.02-2.58-1.57-2.58-1.58 0-1.82 1.23-1.82 2.5V20h-3.72V9.9Z"/></svg>LinkedIn
+      </a>
+      <a href="mailto:kushagrasingh1424@gmail.com" aria-label="Send email to Kushagra Singh">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm0 2v.5l9 5.63 9-5.63V7H3Zm18 2.35-8.49 5.3a1 1 0 0 1-1.02 0L3 9.35V17h18V9.35Z"/></svg>Email
+      </a>
+      <a href="kushagra_resume_2026.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open resume">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 1.5V9h5.5L13 3.5ZM8 13h8v1.5H8V13Zm0 3h8v1.5H8V16Z"/></svg>Resume Download
+      </a>
+      <a href="https://leetcode.com/kushagra1424" target="_blank" rel="noopener noreferrer" aria-label="Open LeetCode profile">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M13.48 3.52a1 1 0 0 1 1.41 0l6.59 6.59a1 1 0 0 1 0 1.41l-6.59 6.59a1 1 0 1 1-1.41-1.41L19.36 11l-5.88-5.88a1 1 0 0 1 0-1.6ZM4 11a1 1 0 0 0 0 2h11a1 1 0 1 0 0-2H4Z"/></svg>LeetCode
+      </a>
+    </div>
+    <div class="footer-meta">© 2026 Kushagra Singh<br>Built with ❤️ using HTML, CSS & JavaScript</div>
+  </footer>
 
   <div class="float-stack" aria-hidden="true">
     <div class="float f1" id="float1"></div>
@@ -370,11 +632,6 @@
   </div>
 
   <script>
-    /*
-      Owner customization:
-      Replace these URLs/paths with your chosen visuals before publishing.
-      This is not viewer-editable.
-    */
     const PROJECT_IMAGES = {
       fogGpu: "https://picsum.photos/seed/fog-inspired/1920/1280",
       eddie: "https://picsum.photos/seed/eddie-inspired/1920/1280",
@@ -429,7 +686,7 @@
         if (active) active.classList.add("active");
       });
     }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 });
-    ["about", "skills", "projects", "contact"].forEach((id) => {
+    ["about", "education", "skills", "projects", "achievements"].forEach((id) => {
       const target = document.getElementById(id);
       if (target) sectionObserver.observe(target);
     });
