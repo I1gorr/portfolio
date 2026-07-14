@@ -631,74 +631,77 @@
     <div class="float f3" id="float3"></div>
   </div>
 
-  <script>
-    const PROJECT_IMAGES = {
-      fogGpu: "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.itpro.com%2Fhardware%2F30399%2Fwhat-is-a-gpu&ved=0CBYQjRxqFwoTCNjXhsa40pUDFQAAAAAdAAAAABBq&opi=89978449",
-      eddie: "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.jotform.com%2Fai%2Fagents%2Fchatbots-in-education%2F&ved=0CBYQjRxqGAoTCKiz9t640pUDFQAAAAAdAAAAABDpAQ&opi=89978449",
-      mseKey: "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.biometricupdate.com%2F202311%2Fzerobiometrics-wins-patent-for-biometric-cryptography-method&ved=0CBYQjRxqFwoTCNDDw_W40pUDFQAAAAAdAAAAABBq&opi=89978449"
-    };
+ <script>
+  const PROJECT_IMAGES = {
+    fogGpu: "./project-images/fog-gpu.jpg",
+    eddie: "./project-images/eddie-learn-bot.jpg",
+    mseKey: "./project-images/mse-key.jpg"
+  };
 
-    const PROJECT_FEATURE = {
-      fogGpu: "Fog GPU — edge anomaly detection with GPU acceleration",
-      eddie: "EDDIE Learn Bot — RAG-based PDF learning platform",
-      mseKey: "MSE Key — cryptographic keys from image entropy"
-    };
+  const PROJECT_FEATURE = {
+    fogGpu: "Fog GPU — edge anomaly detection with GPU acceleration",
+    eddie: "EDDIE Learn Bot — RAG-based PDF learning platform",
+    mseKey: "MSE Key — cryptographic keys from image entropy"
+  };
 
-    document.querySelectorAll("[data-image-key]").forEach((el) => {
-      const key = el.getAttribute("data-image-key");
-      el.src = PROJECT_IMAGES[key];
+  document.querySelectorAll("[data-image-key]").forEach((el) => {
+    const key = el.getAttribute("data-image-key");
+    el.src = PROJECT_IMAGES[key];
+  });
+
+  const f1 = document.getElementById("float1");
+  const f2 = document.getElementById("float2");
+  const f3 = document.getElementById("float3");
+
+  if (f1) f1.style.backgroundImage = `url(${PROJECT_IMAGES.fogGpu})`;
+  if (f2) f2.style.backgroundImage = `url(${PROJECT_IMAGES.eddie})`;
+  if (f3) f3.style.backgroundImage = `url(${PROJECT_IMAGES.mseKey})`;
+
+  const navFeature = document.getElementById("nav-feature");
+  const projectCases = document.querySelectorAll(".project-case");
+  const navLinks = document.querySelectorAll(".nav-segment.links a");
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
     });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-    const f1 = document.getElementById("float1");
-    const f2 = document.getElementById("float2");
-    const f3 = document.getElementById("float3");
-    f1.style.backgroundImage = `url(${PROJECT_IMAGES.fogGpu})`;
-    f2.style.backgroundImage = `url(${PROJECT_IMAGES.eddie})`;
-    f3.style.backgroundImage = `url(${PROJECT_IMAGES.mseKey})`;
-
-    const navFeature = document.getElementById("nav-feature");
-    const projectCases = document.querySelectorAll(".project-case");
-    const navLinks = document.querySelectorAll(".nav-segment.links a");
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
-
-    const projectObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const key = entry.target.getAttribute("data-key");
-        navFeature.textContent = PROJECT_FEATURE[key] || "";
-      });
-    }, { rootMargin: "-35% 0px -50% 0px", threshold: 0.1 });
-    projectCases.forEach((section) => projectObserver.observe(section));
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        navLinks.forEach((a) => a.classList.remove("active"));
-        const active = document.querySelector(`.nav-segment.links a[href="#${entry.target.id}"]`);
-        if (active) active.classList.add("active");
-      });
-    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 });
-    ["about", "education", "skills", "projects", "achievements"].forEach((id) => {
-      const target = document.getElementById(id);
-      if (target) sectionObserver.observe(target);
+  const projectObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const key = entry.target.getAttribute("data-key");
+      if (navFeature) navFeature.textContent = PROJECT_FEATURE[key] || "";
     });
+  }, { rootMargin: "-35% 0px -50% 0px", threshold: 0.1 });
+  projectCases.forEach((section) => projectObserver.observe(section));
 
-    function floatParallax() {
-      const y = window.scrollY;
-      f1.style.transform = `translateY(${y * 0.03}px) rotate(${(-8 + y * 0.002).toFixed(2)}deg)`;
-      f2.style.transform = `translateY(${y * -0.022}px) rotate(${(3 - y * 0.0015).toFixed(2)}deg)`;
-      f3.style.transform = `translateY(${y * 0.018}px) rotate(${(-2 + y * 0.001).toFixed(2)}deg)`;
-    }
-    window.addEventListener("scroll", floatParallax, { passive: true });
-    floatParallax();
-  </script>
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach((a) => a.classList.remove("active"));
+      const active = document.querySelector(`.nav-segment.links a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add("active");
+    });
+  }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 });
+
+  ["about", "education", "skills", "projects", "achievements"].forEach((id) => {
+    const target = document.getElementById(id);
+    if (target) sectionObserver.observe(target);
+  });
+
+  function floatParallax() {
+    const y = window.scrollY;
+    if (f1) f1.style.transform = `translateY(${y * 0.03}px) rotate(${(-8 + y * 0.002).toFixed(2)}deg)`;
+    if (f2) f2.style.transform = `translateY(${y * -0.022}px) rotate(${(3 - y * 0.0015).toFixed(2)}deg)`;
+    if (f3) f3.style.transform = `translateY(${y * 0.018}px) rotate(${(-2 + y * 0.001).toFixed(2)}deg)`;
+  }
+
+  window.addEventListener("scroll", floatParallax, { passive: true });
+  floatParallax();
+</script>
 </body>
 </html>
