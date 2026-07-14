@@ -160,10 +160,41 @@
       line-height: 1.75;
       font-size: 0.95rem;
     }
+    .panel ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #cbcbcb;
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+    .panel li + li { margin-top: 4px; }
     .split {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .stat {
+      border: 1px solid #303030;
+      background: #181818;
+      padding: 10px;
+    }
+    .stat .k {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: #8f8f8f;
+      font-weight: 700;
+    }
+    .stat .v {
+      margin-top: 5px;
+      color: #f1f1f1;
+      font-weight: 800;
+      font-size: 0.95rem;
     }
     .tags {
       display: flex;
@@ -278,14 +309,14 @@
 
   <section class="content">
     <article id="about" class="panel reveal">
-      <h2>About</h2>
-      <p>Computer Science undergraduate at VIT Vellore (CGPA 8.34/10) with strong foundations in DSA, distributed systems, machine learning, and backend development. I focus on building practical systems with strong reliability and performance characteristics.</p>
+      <h2>Professional Summary</h2>
+      <p>Computer Science undergraduate with strong foundations in Data Structures and Algorithms, distributed systems, machine learning, and backend development. Experienced in building scalable software, GPU-accelerated applications, AI-powered systems, and secure computing solutions using modern software engineering practices.</p>
     </article>
 
     <div class="split">
       <article class="panel reveal">
         <h2>Education</h2>
-        <p>B.Tech in Computer Science and Engineering<br>Vellore Institute of Technology, 2023–2027</p>
+        <p><strong>B.Tech in Computer Science and Engineering</strong><br>Vellore Institute of Technology, Vellore, India<br>2023–2027 · CGPA: 8.34 / 10</p>
       </article>
       <article id="contact" class="panel reveal">
         <h2>Contact</h2>
@@ -299,9 +330,37 @@
         <span class="tag">C/C++</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">Rust</span><span class="tag">SQL</span><span class="tag">JavaScript</span>
         <span class="tag">DSA</span><span class="tag">OS</span><span class="tag">DBMS</span><span class="tag">CN</span>
         <span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">PyTorch</span><span class="tag">LangChain</span><span class="tag">CUDA</span>
-        <span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Cryptography</span>
+        <span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">REST APIs</span><span class="tag">Microservices</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">AES</span><span class="tag">RSA</span><span class="tag">KDFs</span><span class="tag">Wireshark</span><span class="tag">Nmap</span>
       </div>
     </article>
+
+    <article class="panel reveal">
+      <h2>Project Performance Highlights</h2>
+      <div class="stats">
+        <div class="stat"><div class="k">Fog GPU Accuracy</div><div class="v">88%</div></div>
+        <div class="stat"><div class="k">Fog GPU F1-score</div><div class="v">0.89</div></div>
+        <div class="stat"><div class="k">Inference Throughput</div><div class="v">1.59M samples/s</div></div>
+      </div>
+    </article>
+
+    <div class="split">
+      <article class="panel reveal">
+        <h2>Certifications & Achievements</h2>
+        <ul>
+          <li>FOSS United Hackathon — Winner (2026)</li>
+          <li>IBM Cybersecurity Analyst Professional Certificate (2025)</li>
+          <li>LeetCode — Solved 200+ problems</li>
+        </ul>
+      </article>
+      <article class="panel reveal">
+        <h2>Current Profile Fit</h2>
+        <ul>
+          <li>Software developer profile with backend + systems focus</li>
+          <li>Hands-on experience with AI product workflows and RAG systems</li>
+          <li>Strong foundation for scalable and secure software engineering roles</li>
+        </ul>
+      </article>
+    </div>
   </section>
 
   <div class="float-stack" aria-hidden="true">
