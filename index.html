@@ -72,6 +72,15 @@
     .nav-segment.links a:hover { color: #fff; }
     .nav-segment.feature { flex: 3; color: #f0f0f0; }
 
+    .top-nav,
+    .hero,
+    .showcase,
+    .content,
+    footer {
+      position: relative;
+      z-index: 2;
+    }
+
     .hero {
       min-height: 82vh;
       padding: 84px 16px 20px;
@@ -378,28 +387,28 @@
       line-height: 1.6;
     }
 
-    .float-stack {
+    .bg-personality-layer {
       position: fixed;
-      right: min(3vw, 24px);
-      bottom: 16px;
-      width: 130px;
-      height: 180px;
+      inset: 0;
       pointer-events: none;
-      z-index: 2;
+      z-index: 1;
+      overflow: hidden;
     }
-    .float {
+    .bg-spot {
       position: absolute;
-      width: 120px;
-      height: 150px;
-      border: 1px solid #3a3a3a;
+      border: 1px solid #323232;
       background-size: cover;
       background-position: center;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.42);
-      transition: transform 0.15s linear;
+      border-radius: 12px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.4);
+      opacity: 0.1;
+      filter: saturate(0.85) contrast(0.95);
+      transform: translate3d(0, 0, 0) rotate(var(--angle, 0deg));
+      transition: left 0.65s ease, top 0.65s ease, opacity 0.45s ease, transform 0.65s ease;
     }
-    .float.f1 { left: 6px; top: 2px; transform: rotate(-8deg); }
-    .float.f2 { left: 0; top: 18px; transform: rotate(3deg); }
-    .float.f3 { left: 12px; top: 30px; transform: rotate(-2deg); }
+    .bg-spot.bump {
+      opacity: 0.2;
+    }
 
     .reveal {
       opacity: 0;
@@ -419,7 +428,7 @@
       .split { grid-template-columns: 1fr; }
       .stats { grid-template-columns: 1fr; }
       .skill-groups { grid-template-columns: 1fr; }
-      .float-stack { display: none; }
+      .bg-personality-layer { display: none; }
       .hero { min-height: 74vh; }
     }
     @media (max-width: 720px) {
@@ -616,11 +625,7 @@
     <div class="footer-meta">© 2026 Kushagra Singh<br>Built using HTML, CSS & JavaScript</div>
   </footer>
 
-  <div class="float-stack" aria-hidden="true">
-    <div class="float f1" id="float1"></div>
-    <div class="float f2" id="float2"></div>
-    <div class="float f3" id="float3"></div>
-  </div>
+  <div class="bg-personality-layer" id="bg-personality-layer" aria-hidden="true"></div>
 
  <script>
   const PROJECT_IMAGES = {
@@ -635,18 +640,69 @@
     mseKey: "MSE Key — cryptographic keys from image entropy"
   };
 
+  /*
+    Add your extra personality images here (saved inside /project-images).
+    Example: "./project-images/personality-1.jpg"
+  */
+  const PERSONALITY_IMAGES = [
+    "./project-images/fog-gpu.jpg",
+    "./project-images/eddie-learn-bot.jpg",
+    "./project-images/mse-key.jpg"
+  ];
+
   document.querySelectorAll("[data-image-key]").forEach((el) => {
     const key = el.getAttribute("data-image-key");
     el.src = PROJECT_IMAGES[key];
   });
 
-  const f1 = document.getElementById("float1");
-  const f2 = document.getElementById("float2");
-  const f3 = document.getElementById("float3");
+  const bgLayer = document.getElementById("bg-personality-layer");
+  const spots = [];
 
-  if (f1) f1.style.backgroundImage = `url(${PROJECT_IMAGES.fogGpu})`;
-  if (f2) f2.style.backgroundImage = `url(${PROJECT_IMAGES.eddie})`;
-  if (f3) f3.style.backgroundImage = `url(${PROJECT_IMAGES.mseKey})`;
+  function pickRandomImage() {
+    const index = Math.floor(Math.random() * PERSONALITY_IMAGES.length);
+    return PERSONALITY_IMAGES[index];
+  }
+
+  function randomRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function positionSpot(spot, forceImage = false) {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const size = randomRange(96, 190);
+    const left = randomRange(-20, Math.max(width - size + 20, 20));
+    const top = randomRange(-20, Math.max(height - size + 20, 20));
+    const angle = randomRange(-16, 16).toFixed(2);
+    const bump = Math.random() > 0.55;
+    spot.style.width = `${size}px`;
+    spot.style.height = `${size * randomRange(0.78, 1.28)}px`;
+    spot.style.left = `${left}px`;
+    spot.style.top = `${top}px`;
+    spot.style.setProperty("--angle", `${angle}deg`);
+    spot.classList.toggle("bump", bump);
+    if (forceImage || !spot.style.backgroundImage) {
+      spot.style.backgroundImage = `url(${pickRandomImage()})`;
+    }
+  }
+
+  function createSpots() {
+    if (!bgLayer) return;
+    bgLayer.innerHTML = "";
+    spots.length = 0;
+    const count = window.innerWidth > 1200 ? 7 : 5;
+    for (let i = 0; i < count; i += 1) {
+      const spot = document.createElement("div");
+      spot.className = "bg-spot";
+      positionSpot(spot, true);
+      bgLayer.appendChild(spot);
+      spots.push(spot);
+    }
+  }
+
+  function reshuffleSpots(updateImages = false) {
+    spots.forEach((spot) => positionSpot(spot, updateImages));
+  }
 
   const navFeature = document.getElementById("nav-feature");
   const projectCases = document.querySelectorAll(".project-case");
@@ -684,15 +740,16 @@
     if (target) sectionObserver.observe(target);
   });
 
-  function floatParallax() {
-    const y = window.scrollY;
-    if (f1) f1.style.transform = `translateY(${y * 0.03}px) rotate(${(-8 + y * 0.002).toFixed(2)}deg)`;
-    if (f2) f2.style.transform = `translateY(${y * -0.022}px) rotate(${(3 - y * 0.0015).toFixed(2)}deg)`;
-    if (f3) f3.style.transform = `translateY(${y * 0.018}px) rotate(${(-2 + y * 0.001).toFixed(2)}deg)`;
-  }
+  createSpots();
 
-  window.addEventListener("scroll", floatParallax, { passive: true });
-  floatParallax();
+  projectCases.forEach((section) => {
+    section.addEventListener("mouseenter", () => reshuffleSpots(true));
+    section.addEventListener("focusin", () => reshuffleSpots(false));
+  });
+
+  window.addEventListener("resize", () => {
+    createSpots();
+  });
 </script>
 </body>
 </html>
